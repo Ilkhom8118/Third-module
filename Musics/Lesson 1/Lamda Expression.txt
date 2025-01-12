@@ -4,7 +4,8 @@ Misol uchun Biror bir studentni olaylik studentlar 15 yoshdan boshlab oqishga to
 
 Ishlanishi : student => student.Age >= 15
 
-------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+						Where	
 
 Where metodi ma’lumotlar to‘plamini filtrlash uchun juda qulay va samarali vosita hisoblanadi.
 
@@ -12,3 +13,9 @@ Siz katta kollektsiyalar yoki obyektlar ichida kerakli elementlarni topish uchun
 foydalanishingiz mumkin.
 
 var adultStudents = students.Where(student => student.Age > 18);
+
+Where ishlatadigan bo'lsak condetion bolishi kerak.
+
+----------------------------------------------------------------------------------------------------
+
+						

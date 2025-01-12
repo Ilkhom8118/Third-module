@@ -1,0 +1,6 @@
+@FurnitureCRUD.Server_HostAddress = http://localhost:5183
+
+GET {{FurnitureCRUD.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

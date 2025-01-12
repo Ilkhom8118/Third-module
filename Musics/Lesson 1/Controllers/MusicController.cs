@@ -32,6 +32,11 @@ namespace Lesson_1.Controllers
             return musicService.GetAll();
         }
 
+        [HttpDelete("Delete")]
+        public void DeleteMusic(Guid id)
+        {
+            return musicService.DeleteMusic(id);
+        }
 
 
 
