@@ -1,0 +1,14 @@
+[
+    {
+        "Id": "d4097466-0927-4e4e-93f7-1381b85bb867",
+        "Model": "m5",
+        "Brend": "bmw",
+        "MaximumSpeed": 0,
+        "Color": "string",
+        "YearManufactured": 0,
+        "FuelType": "string",
+        "Price": 0,
+        "Description": "string"
+    }
+
+]
