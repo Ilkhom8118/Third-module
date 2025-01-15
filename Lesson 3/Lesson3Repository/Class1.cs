@@ -1,7 +1,6 @@
-﻿namespace Lesson3Repository
-{
-    public class Class1
-    {
+﻿namespace Lesson3Repository;
 
-    }
+public class Class1
+{
+
 }

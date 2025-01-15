@@ -1,0 +1,5 @@
+AppendText =>
+
+Bu File yokida objectlarni yuklash uchun ishlatilinadi 
+
+bu orqali togridan togri malummotni yozishimiz mumkin lekin buni biz yozib bolgandan so'ng Close() orqali yopib qoyishimiz kerak boladi.

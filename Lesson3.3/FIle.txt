@@ -1,0 +1,20 @@
+Creation Time
+
+File yoki object yaratilgan voxt xisoblanadi
+
+Creation Time Utc =>
+
+Bu umimiy vaxtini beradi yani boshqa davlatlar ham shu proportylarni ishladi sababi hama dasturchilar uchun bir xil voxtda ishlatishga kerak boladi.
+
+FullName =>
+
+Bu ko'rsatilgan lokatsiyasi.
+
+Name =>
+
+Bu fileni nomi xisoblanadi.
+
+LastwriteTime =>
+
+Oxirgi o'rnatilgan fileni voxti xisoblanadi.
+
