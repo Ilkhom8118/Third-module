@@ -1,0 +1,13 @@
+Directory =>
+
+Bu Folder yaratish uchun kerak boladi.
+
+Path.Combine Bu 2 Path bita Folder qilib beradi.
+
+Enumerate File System Infos =>
+
+Shu locatsiyadagi xama malumotlar yani popka va filelarni olib beradi.
+
+Enumerate Files =>
+
+Bu shu locatsiyadagi xama filelarni olib berish uchun kerak boladi.
