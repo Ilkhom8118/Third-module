@@ -11,3 +11,11 @@ Shu locatsiyadagi xama malumotlar yani popka va filelarni olib beradi.
 Enumerate Files =>
 
 Bu shu locatsiyadagi xama filelarni olib berish uchun kerak boladi.
+
+Directory klassining afzalliklari:
+
+Tez va qulay foydalanish: Kataloglar bilan ishlashni juda soddalashtiradi.
+
+Moslashuvchanlik: Kataloglarni boshqarish uchun ko‘plab imkoniyatlarni taqdim etadi.
+
+Statik foydalanish: Ob’ekt yaratmasdan foydalanish mumkin.
