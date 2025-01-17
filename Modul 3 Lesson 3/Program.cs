@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             var filePath = @"C:\Users\zeeyoD\Desktop\.NET\Third-module\Modul 3 Lesson 3\test1.mp4";
-            CopyFileFileWithChunks(filePath, "video4");
+            CopyFileAtOnce(filePath, "Doston");
         }
         public static void CopyFileFileWithChunks(string filePath, string newFileName)
         {
@@ -123,6 +123,7 @@
                 var res = File.ReadAllLines(filePath);
                 File.WriteAllLines(fileFullName, res);
             }
+            
         }
     }
 }
