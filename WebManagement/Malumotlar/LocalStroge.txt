@@ -1,0 +1,12 @@
+LocalStorage =>
+
+LocatStorage bu browser tomonidan taqdim etilgan xotira xisoblanadi.
+
+Bu orqali biz malumotlarni saqlab turish uchun ishlatiladi browser o'chiq paytida xam malumotlar saqlanib turaveradi, Faqat bita domen bilan bog'liq boladi.
+
+LocalStorageService - > LocalStorage bilan ishlashni osonlashtiradi(Abstraksiya) servis yordamida.
+
+LocatStorageService Alohida service yaratib uni barcha malumotlarini boshqarish uchun ishlatiladi.
+
+LocalStorageService Malumotlarni yuklamasdan turib tezkor foydalanish mumkin. Malumotlarni vaqtinchalik yoki uzoq mudatda saqlash. Foydalanuvchiga qulay interfays va xizmat taqdim etadi.
+
