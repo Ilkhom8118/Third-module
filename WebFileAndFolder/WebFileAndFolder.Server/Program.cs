@@ -1,6 +1,8 @@
 
+using WebFileAndFolder.Service.Service;
+using WebFileAndFolder.StorageBroker.Service;
 
-namespace WebManagement.Server
+namespace WebFileAndFolder.Server
 {
     public class Program
     {
@@ -15,7 +17,9 @@ namespace WebManagement.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            
+            builder.Services.AddScoped<IStorageService, StorageService>();
+            builder.Services.AddSingleton<IStorageBrokerService, LocalStorageBrokerService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
