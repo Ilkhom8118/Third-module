@@ -17,6 +17,16 @@ public class StorageService : IStorageService
         _storageBrokerService.CreateDirectory(directory);
     }
 
+    public Stream DownloadFile(string filePaht)
+    {
+        return _storageBrokerService.DownloadFile(filePaht);
+    }
+
+    public Stream DownloadFolderAsZip(string directoryPath)
+    {
+        return _storageBrokerService.DownloadFolderAsZip(directoryPath);
+    }
+
     public List<string> GetAllFilesAndDirectories(string directory)
     {
         var res = _storageBrokerService.GetAllFilesAndDirectories(directory);

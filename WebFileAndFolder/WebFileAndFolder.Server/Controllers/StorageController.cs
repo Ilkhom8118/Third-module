@@ -17,9 +17,10 @@ public class StorageController : ControllerBase
     public void UploadFile(List<IFormFile> formFiles, string? directory)
     {
         directory = directory ?? string.Empty;
+        var mainPath = directory;
         foreach (var file in formFiles)
         {
-            directory = Path.Combine(directory, file.FileName);
+            directory = Path.Combine(mainPath, file.FileName);
             using (Stream stream = file.OpenReadStream())
             {
                 _storageService.UploadFile(directory, stream);
@@ -38,8 +39,44 @@ public class StorageController : ControllerBase
         return _storageService.GetAllFilesAndDirectories(directory);
     }
     [HttpGet("downloadFile")]
-    public IActionResult DownloadFile(string path)
+    public FileStreamResult DownloadFile(string filePath)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(filePath))
+        {
+            throw new Exception("Error");
+        }
+        var fileName = Path.GetFileName(filePath);
+        var stream = _storageService.DownloadFile(filePath);
+        var res = new FileStreamResult(stream, "application/octet-stream")
+        {
+            FileDownloadName = fileName,
+        };
+        return res;
+    }
+    [HttpGet("downloadFolderAsZip")]
+    public FileStreamResult DownloadFolderAsZip(string directoryPath)
+    {
+        if (string.IsNullOrEmpty(directoryPath))
+        {
+            throw new Exception("Error");
+        }
+        var fileName = Path.GetFileName(directoryPath);
+        var stream = _storageService.DownloadFolderAsZip(directoryPath);
+        var res = new FileStreamResult(stream, "application/octet-stream")
+        {
+            FileDownloadName = fileName + ".zip",
+        };
+        return res;
+    }
+    [HttpDelete("deleteFile")]
+    public void DeleteFile(string filePath)
+    {
+        _storageService.DownloadFile(filePath);
+    }
+
+    [HttpDelete("deleteDirectory")]
+    public void DeleteDirectory(string directoryPath)
+    {
+        _storageService.DownloadFile(directoryPath );
     }
 }

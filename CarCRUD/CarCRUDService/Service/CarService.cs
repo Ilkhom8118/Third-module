@@ -127,6 +127,6 @@ public class CarService : ICarService
 
     public void UpdateCarDto(CarDto car)
     {
-        throw new NotImplementedException();
+        cars.UpdateCar(ConvertToEntity(car));
     }
 }

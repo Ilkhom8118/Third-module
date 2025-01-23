@@ -1,0 +1,7 @@
+DTO =>
+
+Maxfiy ma'lumotlarni yashiradi.
+Faqat kerakli ma'lumotlarni yuboradi.
+
+DTO Frontenddan kelgan malumotlar bilan ishlamaydi.
+DTOdagi malumotni servicega beramiz Service esa DTOdagi malumotlarni SQL ga beradi.

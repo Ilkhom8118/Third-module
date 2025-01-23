@@ -1,4 +1,6 @@
-﻿namespace WebFileAndFolder.StorageBroker.Service;
+﻿using System.IO.Compression;
+
+namespace WebFileAndFolder.StorageBroker.Service;
 
 public class LocalStorageBrokerService : IStorageBrokerService
 {
@@ -16,6 +18,55 @@ public class LocalStorageBrokerService : IStorageBrokerService
         directory = Path.Combine(_dataPath, directory);
         ValidateDirectory(directory);
         Directory.CreateDirectory(directory);
+    }
+
+    public void DeleteDirectory(string directoryPath)
+    {
+        directoryPath = Path.Combine(_dataPath, directoryPath);
+        if (!Path.Exists(directoryPath))
+        {
+            throw new Exception("Directory not found to delete");
+        }
+        Directory.Delete(directoryPath, true);
+    }
+
+    public void DeleteFile(string filePath)
+    {
+        filePath = Path.Combine(_dataPath, filePath);
+        if (!File.Exists(filePath))
+        {
+            throw new Exception("File not found to delete");
+        }
+        File.Delete(filePath);
+    }
+
+    public Stream DownloadFile(string filePath)
+    {
+        filePath = Path.Combine(_dataPath, filePath);
+        if (!File.Exists(filePath))
+        {
+            throw new Exception("File not found to download");
+        }
+        var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        return stream;
+    }
+
+    public Stream DownloadFolderAsZip(string directoryPath)
+    {
+        if (Path.GetExtension(directoryPath) != string.Empty)
+        {
+            throw new Exception("DirectoryPath is not directory");
+        }
+        directoryPath = Path.Combine(_dataPath, directoryPath);
+        if (!Directory.Exists(directoryPath))
+        {
+            throw new Exception("Directory not found to download");
+        }
+        var zipPath = directoryPath + ".zip";
+        ZipFile.CreateFromDirectory(directoryPath, zipPath);
+        var stream = new FileStream(zipPath, FileMode.Open, FileAccess.Read);
+        return stream;
+
     }
 
     public List<string> GetAllFilesAndDirectories(string directory)

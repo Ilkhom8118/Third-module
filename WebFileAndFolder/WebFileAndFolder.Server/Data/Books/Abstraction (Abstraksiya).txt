@@ -1,0 +1,18 @@
+Abstraction =>
+
+Abstractionning manosi mavhumlik hisoblanadi.
+Biz asosan Ota classlarni Abstraction qila olamiz.
+Dasturlashda Abstration classlar boshqa classlar uchun mavhum boladi.
+Va o'sha classdagi kodlarni murrakabligini yashirib beradi.
+
+Asosiy qoidalardan biri Abstraction classlardan object olib bo'lmaydi. 
+Boshqa Classlardan meros berish orqali ishlasa bo'ladi.
+
+Abstraction Class Ichiga Ctor yarata olamiz lekin bu ctor bu abstraction classning ozi uchun ishlamaydi balki meros olgan Child class uchun ishlaydi.
+
+Abstraction Classlar Ichida abstraction metodlar ham yarata olamiz lekin bu metodni tana qismini yozmiymiz
+buni ishlatishimiz uchun abstraction classdan meros olayotgan classning Ichida overead kalit sozi yordamida shu metodni tana qismini ishlata olamiz. 
+
+
+
+
