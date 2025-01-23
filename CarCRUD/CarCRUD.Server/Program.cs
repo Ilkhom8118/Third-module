@@ -1,9 +1,5 @@
 
-using Microsoft.AspNetCore.Http.Features;
-using WebFileAndFolder.Service.Service;
-using WebFileAndFolder.StorageBroker.Service;
-
-namespace WebFileAndFolder.Server
+namespace CarCRUD.Server
 {
     public class Program
     {
@@ -17,18 +13,6 @@ namespace WebFileAndFolder.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            builder.Services.AddScoped<IStorageService, StorageService>();
-            builder.Services.AddSingleton<IStorageBrokerService, LocalStorageBrokerService>();
-            builder.WebHost.ConfigureKestrel(options =>
-            {
-                options.Limits.MaxRequestBodySize = long.MaxValue;
-            });
-            builder.Services.Configure<FormOptions>(option =>
-            {
-                option.ValueLengthLimit = int.MaxValue;
-                option.MultipartBoundaryLengthLimit = 524288000;
-            });
 
             var app = builder.Build();
 
