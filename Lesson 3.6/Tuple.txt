@@ -1,0 +1,2 @@
+Tuple =>
+Bu 8 xil turdagi o'zgaruvchilarni ozida saqlab turadi.

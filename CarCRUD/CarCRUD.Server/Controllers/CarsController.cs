@@ -14,7 +14,7 @@ namespace CarCRUD.Server.Controllers
         {
             cars = new CarService();
         }
-        [HttpPost("addCarDto")]
+        [HttpPost("addCar")]
         public Car AddCarDto(CarDto car)
         {
             return cars.AddCarDto(car);
