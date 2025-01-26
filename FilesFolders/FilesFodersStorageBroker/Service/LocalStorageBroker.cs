@@ -98,4 +98,35 @@ public class LocalStorageBroker : IStorageBroker
             stream.CopyTo(fs);
         }
     }
+
+    public void GetTextOfTxtFile(string file)
+    {
+        file = Path.Combine(_dataPath, file);
+        if (!File.Exists(file))
+        {
+            throw new Exception("Bunday fayl mavjud emas");
+        }
+        File.ReadAllText(file);
+    }
+
+    public void UpdateTextOfTextFile(string file, string oldText, string newText)
+    {
+        file = Path.Combine(_dataPath, file);
+        if (!File.Exists(file))
+        {
+            throw new Exception("Bunday fayl mavjud emas");
+        }
+        var fileContaines = File.ReadAllText(file);
+        string updateFile = "";
+        if (fileContaines.Contains(oldText))
+        {
+            updateFile = fileContaines.Replace(oldText, newText);
+        }
+        else
+        {
+            File.AppendAllText(file, newText + Environment.NewLine);
+            return;
+        }
+        File.WriteAllText(file, updateFile);
+    }
 }

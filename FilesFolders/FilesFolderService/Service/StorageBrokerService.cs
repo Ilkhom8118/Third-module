@@ -36,6 +36,16 @@ public class StorageBrokerService : IStorageBrokerService
         return _storageBroker.GetAllDirectory(directory);
     }
 
+    public void GetTextOfTxtfile(string file)
+    {
+        _storageBroker.GetTextOfTxtFile(file);
+    }
+
+    public void UpdateTextOfTextFile(string file, string oldText, string newText)
+    {
+        _storageBroker.UpdateTextOfTextFile(file, oldText, newText);
+    }
+
     public void UploadFile(string filePath, Stream stream)
     {
         _storageBroker.UploadFile(filePath, stream);

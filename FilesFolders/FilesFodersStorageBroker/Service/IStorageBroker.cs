@@ -8,5 +8,7 @@ public interface IStorageBroker
     Stream DownloadFile(string filePath);
     Stream DownloadFolderAsZip(string directoryPath);
     List<string> GetAllDirectory(string directory);
+    void GetTextOfTxtFile(string file);
+    void UpdateTextOfTextFile(string file, string oldText, string newText);
 
 }

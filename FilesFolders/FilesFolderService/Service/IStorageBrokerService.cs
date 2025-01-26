@@ -8,4 +8,7 @@ public interface IStorageBrokerService
     void DeleteFile(string filePath);
     List<string> GetAllDirectory(string directory);
     Stream DownloadFolderAsZip(string directory);
+    void GetTextOfTxtfile(string file);
+    void UpdateTextOfTextFile(string file, string oldText, string newText);
+
 }
