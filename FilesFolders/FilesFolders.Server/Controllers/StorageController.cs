@@ -72,6 +72,16 @@ namespace FilesFolders.Server.Controllers
             };
             return res;
         }
+        [HttpGet("getTextOfTxtFile")]
+        public void GetTextOfTxtFile(string file)
+        {
+            _storageBroker.GetTextOfTxtFile(file);
+        }
 
+        [HttpPut("updateTextOfTextFile")]
+        public void UpdateTextOfTextFile(string file, string oldText, string newText)
+        {
+            _storageBroker.UpdateTextOfTextFile(file, oldText, newText);
+        }
     }
 }
