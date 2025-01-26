@@ -9,16 +9,16 @@ public class MusicCrudApiBroker
     private string _baseUrl;
     public MusicCrudApiBroker()
     {
-        _baseUrl = "https://localhost:7199/api/Cars";
+        _baseUrl = "https://localhost:7121/api/Furniture";
         _httpClient = new HttpClient();
-        var id = Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6");
+        var id = Guid.Parse("660b51e9-064f-4ec4-a3ff-0376919a27f5");
         Delete(id);
         GetAll();
 
     }
     public void GetAll()
     {
-        var url = $"{_baseUrl}/getAllCars";
+        var url = $"{_baseUrl}/getAllSofa";
 
         HttpResponseMessage response = _httpClient.GetAsync(url).Result;
         var responceContent = response.Content.ReadAsStringAsync().Result;
@@ -35,7 +35,7 @@ public class MusicCrudApiBroker
     }
     public void Add()
     {
-        var url = $"{_baseUrl}/addCar";
+        var url = $"{_baseUrl}/addFurniture";
         var car = new Car()
         {
             Brand = "BMW",
@@ -57,7 +57,7 @@ public class MusicCrudApiBroker
     }
     public async void Delete(Guid id)
     {
-        var url = $"{_baseUrl}/deleteCarDto/{id}";
+        var url = $"{_baseUrl}/deleteFurniture?id={id}";
 
         var response = _httpClient.DeleteAsync(url).Result;
         response.EnsureSuccessStatusCode();

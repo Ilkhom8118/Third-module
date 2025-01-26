@@ -45,9 +45,9 @@ public class CarService : ICarService
         return cars.AddCar(convert);
     }
 
-    public void DeleteCarDto(Guid carId)
+    public void DeleteCarDto(Guid id)
     {
-        cars.DeleteCar(carId);
+        cars.DeleteCar(id);
     }
 
     public List<CarDto> GetAllCarByBrand(string brand)

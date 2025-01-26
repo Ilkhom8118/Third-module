@@ -11,7 +11,7 @@ public interface ICarService
     CarDto GetMostExpensiveCar();
     CarDto GetLowestMileAgeCar();
     void UpdateCarDto(CarDto car);
-    void DeleteCarDto(Guid carId);
+    void DeleteCarDto(Guid id);
     CarDto GetCarByIdDto(Guid carId);
     List<CarDto> GetCarsSortedByPrice();
     List<CarDto> GetRecentCars(int years);

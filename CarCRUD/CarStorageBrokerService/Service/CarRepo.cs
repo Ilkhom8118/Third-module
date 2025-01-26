@@ -22,21 +22,25 @@ public class CarRepo : ICarRepo
         }
         _cars = GetAll();
     }
-    private void SaveInformation()
+    private void SaveInformation(List<Car> obj)
     {
-        var json = JsonSerializer.Serialize(_cars);
+        var json = JsonSerializer.Serialize(obj);
         File.WriteAllText(_dataPath, json);
     }
     private List<Car> GetAll()
     {
         var json = File.ReadAllText(_dataPath);
         var file = JsonSerializer.Deserialize<List<Car>>(json);
+        if (file == null)
+        {
+            throw new Exception("Jsondan xatolik bor");
+        }
         return file;
     }
     public Car AddCar(Car obj)
     {
         _cars.Add(obj);
-        SaveInformation();
+        SaveInformation(_cars);
         return obj;
     }
 
@@ -44,12 +48,12 @@ public class CarRepo : ICarRepo
     {
         var list = GetById(id);
         _cars.Remove(list);
-        SaveInformation();
+        SaveInformation(_cars);
     }
 
     public List<Car> GetAllCar()
     {
-        return GetAll();
+        return _cars;
     }
 
     public Car GetById(Guid id)
@@ -66,6 +70,6 @@ public class CarRepo : ICarRepo
     {
         var id = GetById(obj.Id);
         _cars[_cars.IndexOf(id)] = obj;
-        SaveInformation();
+        SaveInformation(_cars);
     }
 }
