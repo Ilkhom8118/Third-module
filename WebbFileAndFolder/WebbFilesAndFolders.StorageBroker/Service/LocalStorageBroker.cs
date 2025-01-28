@@ -1,4 +1,6 @@
-﻿namespace WebbFilesAndFolders.StorageBroker.Service;
+﻿using System.IO.Compression;
+
+namespace WebbFilesAndFolders.StorageBroker.Service;
 
 public class LocalStorageBroker : IStorageBroker
 {
@@ -11,6 +13,8 @@ public class LocalStorageBroker : IStorageBroker
             Directory.CreateDirectory(_dataPath);
         }
     }
+
+
 
     public async Task CreateFolderAsync(string directoryPath)
     {
@@ -48,18 +52,43 @@ public class LocalStorageBroker : IStorageBroker
         return stream;
     }
 
-    public Task<Stream> DownloadFolderAsZipAsync(string directoryPath)
+    public async Task<Stream> DownloadFolderAsZipAsync(string directoryPath)
     {
-        throw new NotImplementedException();
+        if (Path.GetExtension(directoryPath) != string.Empty)
+        {
+            throw new Exception("DirectoryPath is not directory");
+        }
+        directoryPath = Path.Combine(_dataPath, directoryPath);
+        var zip = directoryPath + ".zip";
+        ZipFile.CreateFromDirectory(directoryPath, zip);
+        var stream = new FileStream(zip, FileMode.Open, FileAccess.Read);
+        return stream;
     }
 
-    public Task<List<string>> GetAllAsync(string directoryPath)
+    public async Task<List<string>> GetAllAsync(string directoryPath)
     {
-        throw new NotImplementedException();
+        directoryPath = Path.Combine(_dataPath, directoryPath);
+        var parentPath = Directory.GetParent(directoryPath);
+        if (!Directory.Exists(parentPath?.FullName))
+        {
+            throw new Exception("Parent folder path not found");
+        }
+        var all = Directory.GetFileSystemEntries(directoryPath).ToList();
+        all = all.Select(d => d.Remove(0, directoryPath.Length + 1)).ToList();
+        return all;
     }
 
-    public Task UploadFileAsync(string filePath, Stream stream)
+    public async Task UploadFileAsync(string filePath, Stream stream)
     {
-        throw new NotImplementedException();
+        filePath = Path.Combine(_dataPath, filePath);
+        var parentPath = Directory.GetParent(filePath);
+        if (!Directory.Exists(parentPath?.FullName))
+        {
+            throw new Exception("Parent folder path not found");
+        }
+        using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+        {
+            stream.CopyTo(fs);
+        }
     }
 }

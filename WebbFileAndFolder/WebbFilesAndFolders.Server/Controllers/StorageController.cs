@@ -38,5 +38,37 @@ namespace WebbFilesAndFolders.Server.Controllers
             };
             return res;
         }
+        [HttpPost("uploadFile")]
+        public async Task UploadFile(IFormFile file, string? filePath)
+        {
+            filePath = filePath ?? string.Empty;
+            filePath = Path.Combine(filePath, file.FileName);
+            using (Stream stm = file.OpenReadStream())
+            {
+                await _storageBrokerService.UploadFileAsync(filePath, stm);
+            }
+        }
+        [HttpGet("getAllFolder/{directoryPath}")]
+        public async Task<List<string>> GetAllAsync(string directoryPath)
+        {
+            directoryPath = directoryPath ?? string.Empty;
+            return await _storageBrokerService.GetAllAsync(directoryPath);
+        }
+        [HttpGet("downloadFolderAsZipAsync")]
+        public async Task<FileStreamResult> DownloadFolderAsZipAsync(string directoryPath)
+        {
+            if (string.IsNullOrWhiteSpace(directoryPath))
+            {
+                throw new Exception("Not Found");
+            }
+            var directoryName = Path.GetFileName(directoryPath);
+            var stream = await _storageBrokerService.DownloadFolderAsZipAsync(directoryPath);
+            var res = new FileStreamResult(stream, "applacation/octet-stream")
+            {
+                FileDownloadName = directoryName,
+            };
+            return res;
+
+        }
     }
 }

@@ -26,4 +26,19 @@ public class StorageBrokerService : IStorageBrokerService
     {
         return await _storageBroker.DownloadFileAsync(filePath);
     }
+
+    public async Task<Stream> DownloadFolderAsZipAsync(string directoryPath)
+    {
+        return await _storageBroker.DownloadFolderAsZipAsync(directoryPath);
+    }
+
+    public async Task<List<string>> GetAllAsync(string directoryPath)
+    {
+        return await _storageBroker.GetAllAsync(directoryPath);
+    }
+
+    public async Task UploadFileAsync(string filePath, Stream stream)
+    {
+        await _storageBroker.UploadFileAsync(filePath, stream);
+    }
 }
