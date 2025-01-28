@@ -37,23 +37,23 @@ public class FurnitureRepo : IFurnitureRepo
         }
         return file;
     }
-    public Furnitures AddSofa(Furnitures obj)
+    public async Task<Furnitures> AddSofaAsync(Furnitures obj)
     {
         sofa.Add(obj);
         SaveInformation(sofa);
         return obj;
     }
 
-    public void DeleteSofa(Guid id)
+    public async Task DeleteSofaAsync(Guid id)
     {
-        var guId = GetById(id);
+        var guId = await GetByIdAsync(id);
         sofa.Remove(guId);
         SaveInformation(sofa);
     }
 
-    public Furnitures GetById(Guid id)
+    public async Task<Furnitures> GetByIdAsync(Guid id)
     {
-        var res = GetAllSofa().FirstOrDefault(s => s.Id == id);
+        var res = GetAllSofaAsync().Result.FirstOrDefault(s => s.Id == id);
         if (res == null)
         {
             throw new Exception($"Not Find id {id}");
@@ -61,15 +61,15 @@ public class FurnitureRepo : IFurnitureRepo
         return res;
     }
 
-    public void UpdateSofa(Furnitures obj)
+    public async Task UpdateSofaAsync(Furnitures obj)
     {
-        var id = GetById(obj.Id);
+        var id = await GetByIdAsync(obj.Id);
         sofa[sofa.IndexOf(id)] = obj;
         SaveInformation(sofa);
     }
 
-    public List<Furnitures> GetAllSofa()
+    public async Task<List<Furnitures>> GetAllSofaAsync()
     {
-        return sofa;
+        return GetAll();
     }
 }

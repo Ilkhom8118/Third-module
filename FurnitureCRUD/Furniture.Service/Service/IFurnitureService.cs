@@ -5,20 +5,20 @@ namespace Furniture.Service.Service;
 
 public interface IFurnitureService
 {
-    decimal CalculateTotalWeight();
-    void DeleteFurniture(Guid id);
-    FurnitureDto GetById(Guid id);
-    decimal CalculateTotalValue();
-    List<FurnitureDto> GetAllSofa();
-    FurnitureDto GetCheapestFurniture();
-    void UpdateFurniture(FurnitureDto obj);
-    Furnitures AddFurniture(FurnitureDto obj);
-    FurnitureDto GetMostExpensiveFurniture();
-    List<FurnitureDto> GetAvailableFurnitures();
-    List<FurnitureDto> SearchFurnitureByName(string name);
-    List<FurnitureDto> GetFurnitureByCategory(string category);
-    List<FurnitureDto> GetFurnitureByMaterial(string material);
-    List<FurnitureDto> GetFurnitureManufacturedAfterYear(int year);
-    List<FurnitureDto> GetFurnituresOrderedByWeight(decimal min, decimal max);
-    List<FurnitureDto> GetFurnituresOrderedByPrice(int minPrice, int maxPrice);
+    Task<decimal> CalculateTotalWeightAsync();
+    Task DeleteFurnitureAsync(Guid id);
+    Task<FurnitureDto> GetByIdAsync(Guid id);
+    Task<decimal> CalculateTotalValueAsync();
+    Task<List<FurnitureDto>> GetAllSofaAsync();
+    Task<FurnitureDto> GetCheapestFurnitureAsync();
+    Task UpdateFurnitureAsync(FurnitureDto obj);
+    Task<Furnitures> AddFurnitureAsync(FurnitureDto obj);
+    Task<FurnitureDto> GetMostExpensiveFurnitureAsync();
+    Task<List<FurnitureDto>> GetAvailableFurnituresAsync();
+    Task<List<FurnitureDto>> SearchFurnitureByNameAsync(string name);
+    Task<List<FurnitureDto>> GetFurnitureByCategoryAsync(string category);
+    Task<List<FurnitureDto>> GetFurnitureByMaterialAsync(string material);
+    Task<List<FurnitureDto>> GetFurnitureManufacturedAfterYearAsync(int year);
+    Task<List<FurnitureDto>> GetFurnituresOrderedByWeightAsync(decimal min, decimal max);
+    Task<List<FurnitureDto>> GetFurnituresOrderedByPriceAsync(int minPrice, int maxPrice);
 }

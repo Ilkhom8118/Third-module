@@ -35,7 +35,6 @@ public class FurnitureService : IFurnitureService
     {
         return new Furnitures()
         {
-            Id = obj.Id ?? Guid.NewGuid(),
             Name = obj.Name,
             Brand = obj.Brand,
             Color = obj.Color,
@@ -46,14 +45,15 @@ public class FurnitureService : IFurnitureService
             Dimensions = obj.Dimensions,
             IsAvailable = obj.IsAvailable,
             Description = obj.Description,
+            Id = obj.Id ?? Guid.NewGuid(),
             YearManufactured = obj.YearManufactured,
         };
     }
 
-    public Furnitures AddFurniture(FurnitureDto obj)
+    public async Task<Furnitures> AddFurnitureAsync(FurnitureDto obj)
     {
-        var convert = ConvertToEntity(obj);
-        sofa.AddSofa(convert);
+        var convert =  ConvertToEntity(obj);
+        sofa.AddSofaAsync(convert);
         return convert;
     }
 

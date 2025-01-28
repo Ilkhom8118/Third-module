@@ -1,0 +1,21 @@
+[
+    {
+        "Id": "7749fbe6-3214-4c8d-ba95-9b1dedd73b92",
+        "Title": "Potter",
+        "Director": "string",
+        "DurationMinutes": 0,
+        "Rating": 0,
+        "BoxOfficeEarnings": 0,
+        "ReleaseDate": "2025-01-27T11:07:46.67Z"
+    },
+    {
+        "Id": "649499fc-bb85-4d26-894f-2ba81b500e90",
+        "Title": "Qwerty",
+        "Director": "string",
+        "DurationMinutes": 0,
+        "Rating": 0,
+        "BoxOfficeEarnings": 0,
+        "ReleaseDate": "2025-01-27T11:07:46.67Z"
+    }
+
+]

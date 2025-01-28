@@ -1,0 +1,6 @@
+@MovieCRUD.Server_HostAddress = http://localhost:5296
+
+GET {{MovieCRUD.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

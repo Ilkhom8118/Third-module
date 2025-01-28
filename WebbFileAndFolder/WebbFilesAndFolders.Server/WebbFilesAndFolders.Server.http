@@ -1,0 +1,6 @@
+@WebbFilesAndFolders.Server_HostAddress = http://localhost:5250
+
+GET {{WebbFilesAndFolders.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
