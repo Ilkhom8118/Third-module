@@ -25,9 +25,9 @@ public class LocalStorageBroker : IStorageBrokers
             throw new Exception("Parent folder path not found");
         }
     }
-    public async Task CreateDirectoryAysnc(string? directoryPath)
+    public async Task CreateDirectoryAysnc(string directoryPath)
     {
-        directoryPath = directoryPath ?? string.Empty;
+        directoryPath = Path.Combine(_dataPath, directoryPath);
         ValidateDirectory(directoryPath);
         Directory.CreateDirectory(directoryPath);
     }
@@ -36,12 +36,12 @@ public class LocalStorageBroker : IStorageBrokers
     {
         directoryPath = Path.Combine(_dataPath, directoryPath);
         var parentPath = Directory.GetParent(directoryPath);
-        if (!Directory.Exists(parentPath.FullName))
+        if (!Directory.Exists(parentPath?.FullName))
         {
             throw new Exception("Parent Folder path not found");
         }
         var all = Directory.GetFileSystemEntries(directoryPath).ToList();
-        all = all.Select(d => d.Remove(0, directoryPath.Length + 1)).ToList();
+        all = all.Select(d => d.Remove(0, directoryPath.Length)).ToList();
         return all;
     }
 
@@ -49,11 +49,11 @@ public class LocalStorageBroker : IStorageBrokers
     {
         filePath = Path.Combine(_dataPath, filePath);
         var parentPath = Directory.GetParent(filePath);
-        if (!Directory.Exists(filePath))
+        if (!Directory.Exists(parentPath?.FullName))
         {
             throw new Exception("Parent folder path not found");
         }
-        using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
         {
             await stream.CopyToAsync(fs);
         }
@@ -87,13 +87,9 @@ public class LocalStorageBroker : IStorageBrokers
             throw new Exception("DirectoryPath is not directory");
         }
         directoryPath = Path.Combine(_dataPath, directoryPath);
-        if (!Directory.Exists(directoryPath))
-        {
-            throw new Exception("Directory not found not download");
-        }
         var zip = directoryPath + ".zip";
         ZipFile.CreateFromDirectory(directoryPath, zip);
-        var stream = new FileStream(zip, FileMode.Create, FileAccess.Write);
+        var stream = new FileStream(zip, FileMode.Open, FileAccess.Read);
         return stream;
     }
 }
