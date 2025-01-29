@@ -1,0 +1,6 @@
+@WebFileDirectory.Server_HostAddress = http://localhost:5107
+
+GET {{WebFileDirectory.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

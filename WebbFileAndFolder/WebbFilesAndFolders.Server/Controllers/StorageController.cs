@@ -13,16 +13,22 @@ namespace WebbFilesAndFolders.Server.Controllers
         {
             _storageBrokerService = storageBrokerService;
         }
+
+
         [HttpPost("createFolder")]
         public async Task CreateFolder(string directoryPath)
         {
             await _storageBrokerService.CreateFolderAysnc(directoryPath);
         }
+
+
         [HttpDelete("deleteFile")]
         public async Task DeleteFile(string filePath)
         {
             await _storageBrokerService.DeleteFileAysnc(filePath);
         }
+
+
         [HttpGet("downloadFile")]
         public async Task<FileStreamResult> DownloadFile(string filePath)
         {
@@ -38,6 +44,8 @@ namespace WebbFilesAndFolders.Server.Controllers
             };
             return res;
         }
+
+
         [HttpPost("uploadFile")]
         public async Task UploadFile(IFormFile file, string? filePath)
         {
@@ -48,12 +56,16 @@ namespace WebbFilesAndFolders.Server.Controllers
                 await _storageBrokerService.UploadFileAsync(filePath, stm);
             }
         }
+
+
         [HttpGet("getAllFolder/{directoryPath}")]
         public async Task<List<string>> GetAllAsync(string directoryPath)
         {
             directoryPath = directoryPath ?? string.Empty;
             return await _storageBrokerService.GetAllAsync(directoryPath);
         }
+
+
         [HttpGet("downloadFolderAsZipAsync")]
         public async Task<FileStreamResult> DownloadFolderAsZipAsync(string directoryPath)
         {
