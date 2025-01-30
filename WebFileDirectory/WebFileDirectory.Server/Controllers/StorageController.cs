@@ -8,7 +8,6 @@ namespace WebFileDirectory.Server.Controllers
     public class StorageController : ControllerBase
     {
         private readonly IStorageBrokerService _storageBrokerService;
-
         public StorageController(IStorageBrokerService storageBrokerService)
         {
             _storageBrokerService = storageBrokerService;
@@ -49,7 +48,6 @@ namespace WebFileDirectory.Server.Controllers
         [HttpPost("uploadFile")]
         public async Task UploadFile(string? filePath, IFormFile file)
         {
-
             filePath = filePath ?? string.Empty;
             filePath = Path.Combine(filePath, file.FileName);
             using (Stream stm = file.OpenReadStream())
