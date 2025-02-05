@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            new MusicCrudApiBroker();
+            //new MusicCrudApiBroker();
+            var path = @"C:\Users\zeeyoD\Desktop\.NET\Data";
+            //Directory.CreateDirectory(path);
+            Console.WriteLine(Path.GetFileName(path));
         }
     }
 }

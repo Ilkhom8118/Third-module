@@ -1,4 +1,4 @@
-namespace FileManengement.Server
+namespace FileManegment
 {
     public class WeatherForecast
     {

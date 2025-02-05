@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace FileManengement.Server.Controllers
+namespace FileManegment.Controllers
 {
     [ApiController]
     [Route("[controller]")]

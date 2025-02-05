@@ -1,7 +1,7 @@
 ﻿
 namespace WebManagement.StorageBroker.Services;
 
-public class AzureStorageService : IStorageBrokerService
+public class AzureStorageService
 {
     public void CreateDirectory(string directoryPath)
     {

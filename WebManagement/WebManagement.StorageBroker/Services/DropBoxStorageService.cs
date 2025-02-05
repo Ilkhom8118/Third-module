@@ -1,7 +1,7 @@
 ﻿
 namespace WebManagement.StorageBroker.Services;
 
-public class DropBoxStorageService : IStorageBrokerService
+public class DropBoxStorageService 
 {
     public void CreateDirectory(string directoryPath)
     {

@@ -1,7 +1,7 @@
 ﻿
 namespace WebManagement.StorageBroker.Services;
 
-public class AwsStprageService : IStorageBrokerService
+public class AwsStprageService 
 {
     public void CreateDirectory(string directoryPath)
     {

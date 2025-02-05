@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Service\" />
+    <ProjectReference Include="..\FileManegement.StorageBroker\FileManegement.StorageBroker.csproj" />
   </ItemGroup>
 
 </Project>

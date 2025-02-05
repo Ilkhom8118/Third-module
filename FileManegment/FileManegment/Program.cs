@@ -1,5 +1,8 @@
 
-namespace FileManengement.Server
+using FileManegement.Service.Service;
+using FileManegement.StorageBroker.Service;
+
+namespace FileManegment
 {
     public class Program
     {
@@ -14,6 +17,9 @@ namespace FileManengement.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+
+            builder.Services.AddScoped<IStorageBrokerService, StorageBrokerService>();
+            builder.Services.AddSingleton<IStorageBroker, LocalStorageBroker>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

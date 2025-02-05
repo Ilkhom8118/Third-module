@@ -22,19 +22,15 @@ public class FurnitureRepo : IFurnitureRepo
         }
         sofa = GetAll();
     }
-    private void SaveInformation(List<Furnitures> obj)
+    private async Task SaveInformation(List<Furnitures> obj)
     {
         var json = JsonSerializer.Serialize(obj);
-        File.WriteAllText(_path, json);
+        await File.WriteAllTextAsync(_path, json);
     }
     private List<Furnitures> GetAll()
     {
         var json = File.ReadAllText(_path);
         var file = JsonSerializer.Deserialize<List<Furnitures>>(json);
-        if (file == null)
-        {
-            throw new Exception("Jsondan xatolik bor");
-        }
         return file;
     }
     public async Task<Furnitures> AddSofaAsync(Furnitures obj)
