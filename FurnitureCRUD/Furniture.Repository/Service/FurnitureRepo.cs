@@ -1,71 +1,31 @@
 ﻿using Furniture.DataAccess.Entity;
-using System.Text.Json;
 
 namespace Furniture.Repository.Service;
 
 public class FurnitureRepo : IFurnitureRepo
 {
-    private readonly string _path;
-    private readonly string _directoryPath;
-    private List<Furnitures> sofa;
-    public FurnitureRepo()
+    public Task<Furnitures> AddSofaAsync(Furnitures obj)
     {
-        _directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "Data");
-        _path = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Furniture.json");
-        if (!Directory.Exists(_directoryPath))
-        {
-            Directory.CreateDirectory(_directoryPath);
-        }
-        if (!Path.Exists(_path))
-        {
-            File.WriteAllText(_path, "[]");
-        }
-        sofa = GetAll();
-    }
-    private async Task SaveInformation(List<Furnitures> obj)
-    {
-        var json = JsonSerializer.Serialize(obj);
-        await File.WriteAllTextAsync(_path, json);
-    }
-    private List<Furnitures> GetAll()
-    {
-        var json = File.ReadAllText(_path);
-        var file = JsonSerializer.Deserialize<List<Furnitures>>(json);
-        return file;
-    }
-    public async Task<Furnitures> AddSofaAsync(Furnitures obj)
-    {
-        sofa.Add(obj);
-        SaveInformation(sofa);
-        return obj;
+        throw new NotImplementedException();
     }
 
-    public async Task DeleteSofaAsync(Guid id)
+    public Task DeleteSofaAsync(Guid id)
     {
-        var guId = await GetByIdAsync(id);
-        sofa.Remove(guId);
-        SaveInformation(sofa);
+        throw new NotImplementedException();
     }
 
-    public async Task<Furnitures> GetByIdAsync(Guid id)
+    public Task<List<Furnitures>> GetAllSofaAsync()
     {
-        var res = GetAllSofaAsync().Result.FirstOrDefault(s => s.Id == id);
-        if (res == null)
-        {
-            throw new Exception($"Not Find id {id}");
-        }
-        return res;
+        throw new NotImplementedException();
     }
 
-    public async Task UpdateSofaAsync(Furnitures obj)
+    public Task<Furnitures> GetByIdAsync(Guid id)
     {
-        var id = await GetByIdAsync(obj.Id);
-        sofa[sofa.IndexOf(id)] = obj;
-        SaveInformation(sofa);
+        throw new NotImplementedException();
     }
 
-    public async Task<List<Furnitures>> GetAllSofaAsync()
+    public Task UpdateSofaAsync(Furnitures obj)
     {
-        return GetAll();
+        throw new NotImplementedException();
     }
 }

@@ -9,7 +9,7 @@ public class FurnitureService : IFurnitureService
     private readonly IFurnitureRepo sofa;
     public FurnitureService()
     {
-        sofa = new FurnitureRepo();
+        sofa = new FurnitureRepoFile();
     }
 
     private FurnitureDto ConvertToDto(Furnitures obj)
@@ -52,46 +52,50 @@ public class FurnitureService : IFurnitureService
 
     public async Task<Furnitures> AddFurnitureAsync(FurnitureDto obj)
     {
-        var convert =  ConvertToEntity(obj);
-        sofa.AddSofaAsync(convert);
+        var convert = ConvertToEntity(obj);
+        await sofa.AddSofaAsync(convert);
         return convert;
     }
 
-    public decimal CalculateTotalValue()
+    public async Task<decimal> CalculateTotalValueAsync()
     {
-        return GetAllSofa().Sum(f => f.Weight);
+        var res = await GetAllSofaAsync(); ;
+        return res.Sum(f => f.Weight);
     }
 
-    public void DeleteFurniture(Guid id)
+    public async Task DeleteFurnitureAsync(Guid id)
     {
-        sofa.DeleteSofa(id);
+        await sofa.DeleteSofaAsync(id);
     }
 
-    public List<FurnitureDto> GetAllSofa()
+    public async Task<List<FurnitureDto>> GetAllSofaAsync()
     {
-        var get = sofa.GetAllSofa();
+        var get = await sofa.GetAllSofaAsync();
         var getDto = get.Select(f => ConvertToDto(f)).ToList();
         return getDto;
     }
 
-    public List<FurnitureDto> GetAvailableFurnitures()
+    public async Task<List<FurnitureDto>> GetAvailableFurnituresAsync()
     {
-        return GetAllSofa().Where(f => f.IsAvailable).ToList();
+        var res = await GetAllSofaAsync();
+        return res.Where(f => f.IsAvailable).ToList();
     }
 
-    public FurnitureDto GetById(Guid id)
+    public async Task<FurnitureDto> GetByIdAsync(Guid id)
     {
-        var res = GetAllSofa().FirstOrDefault(f => f.Id == id);
-        if (res == null)
+        var res = await GetAllSofaAsync();
+        var result = res.FirstOrDefault(f => f.Id == id);
+        if (result == null)
         {
             throw new Exception($"Not Find id: {id}");
         }
-        return res;
+        return result;
     }
 
-    public FurnitureDto GetCheapestFurniture()
+    public async Task<FurnitureDto> GetCheapestFurnitureAsync()
     {
-        var res = GetAllSofa().OrderBy(f => f.Price).FirstOrDefault();
+        var result = await GetAllSofaAsync();
+        var res = result.OrderBy(f => f.Price).FirstOrDefault();
         if (res == null)
         {
             throw new Exception("No Furniture");
@@ -99,34 +103,40 @@ public class FurnitureService : IFurnitureService
         return res;
     }
 
-    public List<FurnitureDto> GetFurnitureByCategory(string category)
+    public async Task<List<FurnitureDto>> GetFurnitureByCategoryAsync(string category)
     {
-        return GetAllSofa().Where(f => f.Category == category).ToList();
+        var res = await GetAllSofaAsync();
+        return res.Where(f => f.Category == category).ToList();
     }
 
-    public List<FurnitureDto> GetFurnitureByMaterial(string material)
+    public async Task<List<FurnitureDto>> GetFurnitureByMaterialAsync(string material)
     {
-        return GetAllSofa().Where(f => f.Material == material).ToList();
+        var res = await GetAllSofaAsync();
+        return res.Where(f => f.Material == material).ToList();
     }
 
-    public List<FurnitureDto> GetFurnitureManufacturedAfterYear(int year)
+    public async Task<List<FurnitureDto>> GetFurnitureManufacturedAfterYearAsync(int year)
     {
-        return GetAllSofa().Where(f => f.YearManufactured == year).ToList();
+        var res = await GetAllSofaAsync();
+        return res.Where(f => f.YearManufactured == year).ToList();
     }
 
-    public List<FurnitureDto> GetFurnituresOrderedByPrice(int minPrice, int maxPrice)
+    public async Task<List<FurnitureDto>> GetFurnituresOrderedByPriceAsync(int minPrice, int maxPrice)
     {
-        return GetAllSofa().Where(f => f.Price >= minPrice && f.Price <= maxPrice).ToList();
+        var res = await GetAllSofaAsync();
+        return res.Where(f => f.Price >= minPrice && f.Price <= maxPrice).ToList();
     }
 
-    public List<FurnitureDto> GetFurnituresOrderedByWeight(decimal min, decimal max)
+    public async Task<List<FurnitureDto>> GetFurnituresOrderedByWeightAsync(decimal min, decimal max)
     {
-        return GetAllSofa().Where(f => f.Weight >= min && f.Weight <= max).ToList();
+        var res = await GetAllSofaAsync();
+        return res.Where(f => f.Weight >= min && f.Weight <= max).ToList();
     }
 
-    public FurnitureDto GetMostExpensiveFurniture()
+    public async Task<FurnitureDto> GetMostExpensiveFurnitureAsync()
     {
-        var res = GetAllSofa().OrderByDescending(f => f.Price).FirstOrDefault();
+        var result = await GetAllSofaAsync();
+        var res = result.OrderByDescending(f => f.Price).FirstOrDefault();
         if (res == null)
         {
             throw new Exception("Qimmat mebellar mavjud emas!");
@@ -134,20 +144,22 @@ public class FurnitureService : IFurnitureService
         return res;
     }
 
-    public List<FurnitureDto> SearchFurnitureByName(string name)
+    public async Task<List<FurnitureDto>> SearchFurnitureByNameAsync(string name)
     {
-        return GetAllSofa().Where(f => f.Name.Contains(name)).ToList();
+        var res = await GetAllSofaAsync();
+        return res.Where(f => f.Name.Contains(name)).ToList();
     }
 
-    public void UpdateFurniture(FurnitureDto obj)
+    public async Task UpdateFurnitureAsync(FurnitureDto obj)
     {
         var convert = ConvertToEntity(obj);
-        sofa.UpdateSofa(convert);
+        await sofa.UpdateSofaAsync(convert);
     }
 
-    public decimal CalculateTotalWeight()
+    public async Task<decimal> CalculateTotalWeightAsync()
     {
-        return GetAllSofa().Sum(f => f.Weight);
+        var res = await GetAllSofaAsync();
+        return res.Sum(f => f.Weight);
     }
 }
 

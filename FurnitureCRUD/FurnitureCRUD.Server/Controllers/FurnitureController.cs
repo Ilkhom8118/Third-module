@@ -16,99 +16,99 @@ namespace FurnitureCRUD.Server.Controllers
         }
         [HttpPost("addFurniture")]
 
-        public Furnitures AddFurniture(FurnitureDto obj)
+        public async Task<Furnitures> AddFurniture(FurnitureDto obj)
         {
-            return sofa.AddFurniture(obj);
+            return await sofa.AddFurnitureAsync(obj);
         }
 
         [HttpDelete("deleteFurniture")]
-        public void DeleteFurniture(Guid id)
+        public async Task DeleteFurniture(Guid id)
         {
-            sofa.DeleteFurniture(id);
+            await sofa.DeleteFurnitureAsync(id);
         }
 
         [HttpGet("getAllSofa")]
 
-        public List<FurnitureDto> GetAllSofa()
+        public async Task<List<FurnitureDto>> GetAllSofa()
         {
-            return sofa.GetAllSofa();
+            return await sofa.GetAllSofaAsync();
         }
 
         [HttpGet("getById")]
-        public FurnitureDto GetById(Guid id)
+        public async Task<FurnitureDto> GetById(Guid id)
         {
-            return sofa.GetById(id);
+            return await sofa.GetByIdAsync(id);
         }
 
         [HttpPut("updateFurniture")]
-        public void UpdateFurniture(FurnitureDto obj)
+        public async Task UpdateFurniture(FurnitureDto obj)
         {
-            sofa.UpdateFurniture(obj);
+            await sofa.UpdateFurnitureAsync(obj);
         }
 
         [HttpGet("CalculateTotalWeight")]
 
-        public decimal CalculateTotalWeight()
+        public async Task<decimal> CalculateTotalWeight()
         {
-            return sofa.CalculateTotalWeight();
+            return await sofa.CalculateTotalWeightAsync();
         }
         [HttpGet("calculateTotalValue")]
-        public decimal CalculateTotalValue()
+        public async Task<decimal> CalculateTotalValue()
         {
-            return sofa.CalculateTotalValue();
+            return await sofa.CalculateTotalValueAsync();
         }
 
         [HttpGet("getCheapestFurniture")]
 
-        public FurnitureDto GetCheapestFurniture()
+        public async Task<FurnitureDto> GetCheapestFurniture()
         {
-            return sofa.GetCheapestFurniture();
+            return await sofa.GetCheapestFurnitureAsync();
         }
         [HttpGet("getMostExpensiveFurniture")]
-        public FurnitureDto GetMostExpensiveFurniture()
+        public async Task<FurnitureDto> GetMostExpensiveFurniture()
         {
-            return sofa.GetMostExpensiveFurniture();
+            return await sofa.GetMostExpensiveFurnitureAsync();
         }
 
         [HttpGet("getAvailableFurnitures")]
-        public List<FurnitureDto> GetAvailableFurnitures()
+        public async Task<List<FurnitureDto>> GetAvailableFurnitures()
         {
-            return sofa.GetAvailableFurnitures();
+            return await sofa.GetAvailableFurnituresAsync();
         }
 
         [HttpGet("searchFurnitureByName")]
-        public List<FurnitureDto> SearchFurnitureByName(string name)
+        public async Task<List<FurnitureDto>> SearchFurnitureByName(string name)
         {
-            return sofa.SearchFurnitureByName(name);
+            return await sofa.SearchFurnitureByNameAsync(name);
         }
 
         [HttpGet("getFurnitureByCategory")]
-        public List<FurnitureDto> GetFurnitureByCategory(string category)
+        public async Task<List<FurnitureDto>> GetFurnitureByCategory(string category)
         {
-            return sofa.GetFurnitureByCategory(category);
+            return await sofa.GetFurnitureByCategoryAsync(category);
         }
 
         [HttpGet("getFurnitureByMaterial")]
-        public List<FurnitureDto> GetFurnitureByMaterial(string material)
+        public async Task<List<FurnitureDto>> GetFurnitureByMaterial(string material)
         {
-            return sofa.GetFurnitureByMaterial(material);
+            return await sofa.GetFurnitureByMaterialAsync(material);
         }
 
         [HttpGet("getFurnitureManufacturedAfterYear")]
-        public List<FurnitureDto> GetFurnitureManufacturedAfterYear(int year)
+        public async Task<List<FurnitureDto>> GetFurnitureManufacturedAfterYear(int year)
         {
-            return sofa.GetFurnitureManufacturedAfterYear(year);
+            return await sofa.GetFurnitureManufacturedAfterYearAsync(year);
         }
         [HttpGet("getFurnituresOrderedByWeight")]
-        public List<FurnitureDto> GetFurnituresOrderedByWeight(decimal min, decimal max)
+        public async Task<List<FurnitureDto>> GetFurnituresOrderedByWeight(decimal min, decimal max)
         {
-            return sofa.GetFurnituresOrderedByWeight(min, max);
+            return await sofa.GetFurnituresOrderedByWeightAsync(min, max);
         }
 
         [HttpGet("getFurnituresOrderedByPrice")]
-        public List<FurnitureDto> GetFurnituresOrderedByPrice(int minPrice, int maxPrice)
+        public async Task<List<FurnitureDto>> GetFurnituresOrderedByPrice(int minPrice, int maxPrice)
         {
-            return sofa.GetFurnituresOrderedByPrice(minPrice, maxPrice);
+            return await sofa.GetFurnituresOrderedByPriceAsync(minPrice, maxPrice);
         }
     }
 }
