@@ -1,4 +1,8 @@
 
+using Furniture.DataAccess;
+using Furniture.Repository.Service;
+using Furniture.Service.Service;
+
 namespace FurnitureCRUD.Server
 {
     public class Program
@@ -14,6 +18,9 @@ namespace FurnitureCRUD.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<IFurnitureService, FurnitureService>();
+            builder.Services.AddScoped<IFurnitureRepo, FurnitureRepo>();
+            builder.Services.AddSingleton<MainContext>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -6,10 +6,11 @@ namespace Furniture.Service.Service;
 
 public class FurnitureService : IFurnitureService
 {
-    private readonly IFurnitureRepo sofa;
-    public FurnitureService()
+    private readonly IFurnitureRepo _sofa;
+
+    public FurnitureService(IFurnitureRepo sofa)
     {
-        sofa = new FurnitureRepoFile();
+        _sofa = sofa;
     }
 
     private FurnitureDto ConvertToDto(Furnitures obj)
@@ -53,7 +54,7 @@ public class FurnitureService : IFurnitureService
     public async Task<Furnitures> AddFurnitureAsync(FurnitureDto obj)
     {
         var convert = ConvertToEntity(obj);
-        await sofa.AddSofaAsync(convert);
+        await _sofa.AddSofaAsync(convert);
         return convert;
     }
 
@@ -65,12 +66,12 @@ public class FurnitureService : IFurnitureService
 
     public async Task DeleteFurnitureAsync(Guid id)
     {
-        await sofa.DeleteSofaAsync(id);
+        await _sofa.DeleteSofaAsync(id);
     }
 
     public async Task<List<FurnitureDto>> GetAllSofaAsync()
     {
-        var get = await sofa.GetAllSofaAsync();
+        var get = await _sofa.GetAllSofaAsync();
         var getDto = get.Select(f => ConvertToDto(f)).ToList();
         return getDto;
     }
@@ -153,7 +154,7 @@ public class FurnitureService : IFurnitureService
     public async Task UpdateFurnitureAsync(FurnitureDto obj)
     {
         var convert = ConvertToEntity(obj);
-        await sofa.UpdateSofaAsync(convert);
+        await _sofa.UpdateSofaAsync(convert);
     }
 
     public async Task<decimal> CalculateTotalWeightAsync()

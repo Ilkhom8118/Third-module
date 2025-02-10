@@ -1,31 +1,51 @@
-﻿using Furniture.DataAccess.Entity;
+﻿using Furniture.DataAccess;
+using Furniture.DataAccess.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Furniture.Repository.Service;
 
 public class FurnitureRepo : IFurnitureRepo
 {
-    public Task<Furnitures> AddSofaAsync(Furnitures obj)
+    private readonly MainContext _mainContext;
+
+    public FurnitureRepo(MainContext mainContext)
     {
-        throw new NotImplementedException();
+        _mainContext = mainContext;
     }
 
-    public Task DeleteSofaAsync(Guid id)
+    public async Task<Furnitures> AddSofaAsync(Furnitures obj)
     {
-        throw new NotImplementedException();
+        await _mainContext.AddAsync(obj);
+        await _mainContext.SaveChangesAsync();
+        return obj;
     }
 
-    public Task<List<Furnitures>> GetAllSofaAsync()
+    public async Task DeleteSofaAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var remove = await GetByIdAsync(id);
+        _mainContext.Furniture.Remove(remove);
+        await _mainContext.SaveChangesAsync();
     }
 
-    public Task<Furnitures> GetByIdAsync(Guid id)
+    public async Task<List<Furnitures>> GetAllSofaAsync()
     {
-        throw new NotImplementedException();
+        var res = await _mainContext.Furniture.ToListAsync();
+        return res;
+
     }
 
-    public Task UpdateSofaAsync(Furnitures obj)
+    public async Task<Furnitures> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var sofa = await _mainContext.Furniture.FirstOrDefaultAsync(f => f.Id == id);
+        if (sofa == null)
+        {
+            throw new Exception($"Furniture not found {id}");
+        }
+        return sofa;
+    }
+
+    public async Task UpdateSofaAsync(Furnitures obj)
+    {
+        throw new Exception("asd");
     }
 }
